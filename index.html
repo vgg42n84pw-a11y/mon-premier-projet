@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gora's Topo — L'expertise topographique au service de vos projets</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Work+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --green-deep:#0D3624;
+    --green-mid:#175939;
+    --green-line:#2C6B47;
+    --gold:#C9A24B;
+    --gold-light:#E7CD86;
+    --cream:#F6F1E2;
+    --cream-deep:#EDE4CB;
+    --ink:#14201A;
+    --ink-soft:#4A5850;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--cream);
+    color:var(--ink);
+    font-family:'Work Sans',sans-serif;
+    line-height:1.6;
+  }
+  ::selection{background:var(--gold);color:var(--green-deep);}
+  h1,h2,h3{font-family:'Space Grotesk',sans-serif;font-weight:700;letter-spacing:-0.01em;}
+  .mono{font-family:'IBM Plex Mono',monospace;}
+  a{color:inherit;text-decoration:none;}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 32px;}
+  img,svg{display:block;max-width:100%;}
+
+  /* ---------- HEADER ---------- */
+  header{
+    position:sticky;top:0;z-index:60;
+    background:var(--cream);
+    border-bottom:2px solid var(--green-deep);
+  }
+  .nav{display:flex;align-items:center;justify-content:space-between;padding:16px 32px;max-width:1180px;margin:0 auto;}
+  .logo{display:flex;align-items:center;gap:12px;}
+  .logo-name{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:1.3rem;line-height:1;color:var(--green-deep);}
+  .logo-name span{display:block;font-family:'IBM Plex Mono',monospace;font-weight:400;font-size:0.62rem;letter-spacing:0.12em;color:var(--gold);margin-top:3px;text-transform:uppercase;}
+  .nav-links{display:flex;gap:34px;font-size:0.92rem;font-weight:500;}
+  .nav-links a{position:relative;padding-bottom:4px;color:var(--ink);transition:color .25s;}
+  .nav-links a::after{content:"";position:absolute;left:0;bottom:0;width:0;height:2px;background:var(--gold);transition:width .25s;}
+  .nav-links a:hover{color:var(--green-deep);}
+  .nav-links a:hover::after{width:100%;}
+  .nav-cta{
+    background:var(--green-deep);color:var(--cream);
+    padding:11px 22px;border-radius:3px;font-size:0.88rem;font-weight:600;
+    transition:background .25s;white-space:nowrap;
+  }
+  .nav-cta:hover{background:var(--green-mid);}
+  .burger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;}
+  .burger span{width:24px;height:2px;background:var(--green-deep);}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    background:var(--green-deep);
+    color:var(--cream);
+    position:relative;
+    overflow:hidden;
+    padding:80px 32px 0;
+  }
+  .hero-grid{
+    max-width:1180px;margin:0 auto;
+    display:grid;grid-template-columns:1.05fr 0.95fr;
+    gap:50px;align-items:center;
+  }
+  .hero-text .eyebrow{
+    font-family:'IBM Plex Mono',monospace;font-size:0.76rem;letter-spacing:0.1em;text-transform:uppercase;
+    color:var(--gold-light);display:flex;align-items:center;gap:10px;margin-bottom:24px;
+  }
+  .hero-text .eyebrow::before{content:"";width:26px;height:1px;background:var(--gold);display:inline-block;}
+  .hero-text h1{font-size:clamp(2.1rem,4.6vw,3.4rem);line-height:1.08;margin-bottom:22px;}
+  .hero-text h1 .accent{color:var(--gold-light);}
+  .hero-text p{color:rgba(246,241,226,0.8);font-size:1.05rem;max-width:460px;margin-bottom:36px;}
+  .hero-actions{display:flex;gap:16px;flex-wrap:wrap;}
+  .btn-gold{
+    background:var(--gold);color:var(--green-deep);
+    padding:15px 28px;border-radius:3px;font-weight:600;font-size:0.94rem;
+    display:inline-flex;align-items:center;gap:9px;transition:transform .25s,background .25s;
+  }
+  .btn-gold:hover{background:var(--gold-light);transform:translateY(-2px);}
+  .btn-outline{
+    border:1px solid rgba(246,241,226,0.5);color:var(--cream);
+    padding:14px 26px;border-radius:3px;font-size:0.94rem;font-weight:500;
+    transition:border-color .25s,background .25s;
+  }
+  .btn-outline:hover{border-color:var(--gold);background:rgba(201,162,75,0.1);}
+
+  /* hero device illustration */
+  .hero-visual{position:relative;height:420px;}
+  .callout{
+    position:absolute;background:var(--cream);color:var(--green-deep);
+    font-family:'IBM Plex Mono',monospace;font-size:0.68rem;font-weight:500;letter-spacing:0.04em;
+    padding:7px 12px;border-radius:2px;text-transform:uppercase;
+    box-shadow:0 6px 14px rgba(0,0,0,0.25);
+  }
+  .callout.c1{top:6%;right:2%;}
+  .callout.c2{top:32%;right:22%;}
+  .device-svg{position:absolute;inset:0;width:100%;height:100%;}
+
+  /* ---------- VALUE STRIP ---------- */
+  .value-strip{
+    background:var(--green-deep);
+    border-top:1px solid rgba(246,241,226,0.15);
+    margin-top:60px;
+  }
+  .values{
+    max-width:1180px;margin:0 auto;padding:0 32px;
+    display:grid;grid-template-columns:repeat(4,1fr);
+  }
+  .value{
+    padding:30px 20px;border-left:1px solid rgba(246,241,226,0.15);
+    text-align:center;color:var(--cream);
+  }
+  .value:first-child{border-left:none;}
+  .value svg{width:34px;height:34px;margin:0 auto 14px;stroke:var(--gold);}
+  .value h3{font-size:0.94rem;font-weight:600;margin-bottom:4px;color:var(--cream);}
+  .value p{font-size:0.78rem;color:rgba(246,241,226,0.65);}
+
+  /* ---------- SECTION SHARED ---------- */
+  section{padding:100px 0;}
+  .section-head{max-width:640px;margin-bottom:56px;}
+  .section-head .eyebrow{
+    font-family:'IBM Plex Mono',monospace;font-size:0.76rem;letter-spacing:0.1em;text-transform:uppercase;
+    color:var(--gold);display:flex;align-items:center;gap:10px;margin-bottom:16px;
+  }
+  .section-head .eyebrow::before{content:"";width:26px;height:1px;background:var(--green-deep);display:inline-block;}
+  .section-head h2{font-size:clamp(1.7rem,3.4vw,2.4rem);color:var(--green-deep);}
+  .section-head p{color:var(--ink-soft);margin-top:14px;font-size:1rem;}
+
+  /* ---------- SERVICES ---------- */
+  .services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
+  .service{
+    background:#fff;border:1px solid var(--cream-deep);border-radius:4px;
+    padding:32px 28px;transition:transform .25s,box-shadow .25s,border-color .25s;
+  }
+  .service:hover{transform:translateY(-4px);box-shadow:0 16px 28px rgba(13,54,36,0.1);border-color:var(--gold);}
+  .service-icon{
+    width:50px;height:50px;border-radius:50%;background:var(--green-deep);
+    display:flex;align-items:center;justify-content:center;margin-bottom:20px;
+  }
+  .service-icon svg{width:24px;height:24px;stroke:var(--gold-light);}
+  .service h3{font-size:1.08rem;color:var(--green-deep);margin-bottom:8px;}
+  .service p{color:var(--ink-soft);font-size:0.9rem;}
+
+  /* ---------- EQUIPMENT ---------- */
+  .equipment{background:var(--cream-deep);}
+  .equip-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;}
+  .equip-list{display:flex;flex-direction:column;gap:26px;}
+  .equip-item{display:flex;gap:18px;}
+  .equip-item .num{font-family:'IBM Plex Mono',monospace;color:var(--gold);font-size:0.85rem;flex:none;padding-top:2px;}
+  .equip-item h3{font-size:1.05rem;color:var(--green-deep);margin-bottom:4px;}
+  .equip-item p{color:var(--ink-soft);font-size:0.9rem;}
+  .equip-visual{
+    background:var(--green-deep);border-radius:6px;padding:40px;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .equip-visual svg{width:100%;height:auto;}
+
+  /* ---------- REALISATIONS ---------- */
+  .realisations{background:var(--cream);}
+  .real-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:16px;}
+  .real-card{
+    background:#fff;border:1px solid var(--cream-deep);border-radius:4px;overflow:hidden;
+    transition:transform .25s,box-shadow .25s;
+  }
+  .real-card:hover{transform:translateY(-4px);box-shadow:0 14px 26px rgba(13,54,36,0.12);}
+  .real-visual{height:120px;background:var(--cream-deep);}
+  .real-visual svg{width:100%;height:100%;}
+  .real-label{
+    padding:14px 12px;font-family:'IBM Plex Mono',monospace;font-size:0.68rem;
+    letter-spacing:0.04em;text-transform:uppercase;color:var(--green-deep);font-weight:500;text-align:center;
+  }
+
+  /* ---------- CONTACT ---------- */
+  .contact{background:var(--green-deep);color:var(--cream);}
+  .contact .section-head h2{color:var(--cream);}
+  .contact .section-head .eyebrow{color:var(--gold-light);}
+  .contact .section-head .eyebrow::before{background:var(--gold-light);}
+  .contact .section-head p{color:rgba(246,241,226,0.7);}
+  .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;}
+  .contact-cards{display:flex;flex-direction:column;gap:18px;}
+  .contact-card{
+    display:flex;align-items:center;gap:16px;
+    background:rgba(246,241,226,0.06);border:1px solid rgba(246,241,226,0.15);
+    padding:18px 20px;border-radius:4px;transition:background .25s,border-color .25s;
+  }
+  .contact-card:hover{background:rgba(246,241,226,0.1);border-color:var(--gold);}
+  .contact-card svg{width:22px;height:22px;stroke:var(--gold-light);flex:none;}
+  .contact-card .label{font-family:'IBM Plex Mono',monospace;font-size:0.68rem;text-transform:uppercase;letter-spacing:0.06em;color:var(--gold-light);margin-bottom:3px;}
+  .contact-card .value{font-size:0.98rem;font-weight:500;}
+  .whatsapp-btn{
+    margin-top:6px;background:var(--gold);color:var(--green-deep);
+    padding:16px 26px;border-radius:4px;font-weight:600;text-align:center;
+    display:flex;align-items:center;justify-content:center;gap:10px;
+    transition:background .25s;
+  }
+  .whatsapp-btn:hover{background:var(--gold-light);}
+
+  form{display:flex;flex-direction:column;gap:20px;}
+  .field{display:flex;flex-direction:column;gap:8px;}
+  .field label{font-family:'IBM Plex Mono',monospace;font-size:0.7rem;text-transform:uppercase;letter-spacing:0.06em;color:var(--gold-light);}
+  .field input,.field textarea,.field select{
+    background:rgba(246,241,226,0.06);border:1px solid rgba(246,241,226,0.25);border-radius:3px;
+    color:var(--cream);padding:12px 14px;font-family:'Work Sans',sans-serif;font-size:0.96rem;outline:none;
+    transition:border-color .25s;
+  }
+  .field input::placeholder,.field textarea::placeholder{color:rgba(246,241,226,0.4);}
+  .field input:focus,.field textarea:focus,.field select:focus{border-color:var(--gold);}
+  .field select option{color:#000;}
+  .field textarea{resize:vertical;min-height:90px;}
+  .submit-btn{
+    margin-top:6px;background:var(--gold);color:var(--green-deep);border:none;
+    padding:16px 26px;border-radius:4px;font-family:'Work Sans',sans-serif;font-weight:600;font-size:0.96rem;
+    cursor:pointer;transition:background .25s;
+  }
+  .submit-btn:hover{background:var(--gold-light);}
+
+  /* ---------- FOOTER ---------- */
+  footer{background:#0A2A1B;color:rgba(246,241,226,0.55);position:relative;overflow:hidden;padding:50px 0 26px;}
+  .skyline{position:absolute;bottom:0;left:0;width:100%;opacity:0.5;}
+  .footer-top{
+    max-width:1180px;margin:0 auto;padding:0 32px 30px;position:relative;z-index:2;
+    display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:20px;
+  }
+  .footer-tagline{font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:1.3rem;color:var(--cream);}
+  .footer-tagline span{color:var(--gold);}
+  .footer-bottom{
+    max-width:1180px;margin:0 auto;padding:20px 32px 0;border-top:1px solid rgba(246,241,226,0.12);
+    display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;
+    font-family:'IBM Plex Mono',monospace;font-size:0.76rem;position:relative;z-index:2;
+  }
+
+  /* ---------- REVEAL ---------- */
+  .reveal{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s ease;}
+  .reveal.in{opacity:1;transform:translateY(0);}
+  @media (prefers-reduced-motion:reduce){.reveal{transition:none;opacity:1;transform:none;}}
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width:1000px){
+    .nav-links{display:none;}
+    .burger{display:flex;}
+    .hero-grid{grid-template-columns:1fr;}
+    .hero-visual{height:280px;margin-top:20px;}
+    .values{grid-template-columns:1fr 1fr;}
+    .value{border-left:none;border-top:1px solid rgba(246,241,226,0.15);}
+    .services-grid{grid-template-columns:1fr 1fr;}
+    .equip-grid{grid-template-columns:1fr;}
+    .real-grid{grid-template-columns:repeat(2,1fr);}
+    .contact-grid{grid-template-columns:1fr;gap:40px;}
+  }
+  @media (max-width:600px){
+    .services-grid{grid-template-columns:1fr;}
+    .real-grid{grid-template-columns:1fr 1fr;}
+    .hero{padding:60px 20px 0;}
+    .wrap{padding:0 20px;}
+    .footer-top,.footer-bottom{padding-left:20px;padding-right:20px;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <div class="logo">
+      <svg width="42" height="42" viewBox="0 0 42 42" fill="none">
+        <path d="M8 30 L16 14 L21 22 L26 10 L36 30 Z" fill="var(--gold)" opacity="0.9"/>
+        <circle cx="21" cy="21" r="19" stroke="var(--green-deep)" stroke-width="1.6"/>
+        <line x1="21" y1="30" x2="21" y2="4" stroke="var(--green-deep)" stroke-width="1.6"/>
+        <path d="M13 4h16" stroke="var(--green-deep)" stroke-width="1.6"/>
+        <circle cx="21" cy="4" r="3" fill="var(--green-deep)"/>
+      </svg>
+      <div class="logo-name">GORA'S TOPO<span>Expertise topographique</span></div>
+    </div>
+    <nav class="nav-links">
+      <a href="#prestations">Prestations</a>
+      <a href="#equipement">Équipement</a>
+      <a href="#realisations">Réalisations</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <a href="#contact" class="nav-cta">Nous contacter</a>
+    <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-grid">
+    <div class="hero-text">
+      <span class="eyebrow">Gora's Topo · Dakar, Sénégal</span>
+      <h1>Tous vos projets commencent par <span class="accent">une bonne mesure</span></h1>
+      <p>Des prestations topographiques complètes pour des projets maîtrisés de bout en bout, avec précision, fiabilité et engagement.</p>
+      <div class="hero-actions">
+        <a href="https://wa.me/221782390671" class="btn-gold" target="_blank" rel="noopener">
+          Discuter sur WhatsApp
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a href="#prestations" class="btn-outline">Voir nos prestations</a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <span class="callout c1">Récepteur GNSS</span>
+      <span class="callout c2">Station totale</span>
+      <svg class="device-svg" viewBox="0 0 400 420" fill="none">
+        <!-- GNSS pole -->
+        <line x1="90" y1="120" x2="90" y2="380" stroke="#E7CD86" stroke-width="4"/>
+        <circle cx="90" cy="95" r="26" fill="#E7CD86" opacity="0.95"/>
+        <circle cx="90" cy="95" r="10" fill="#0D3624"/>
+        <rect x="70" y="140" width="40" height="26" rx="3" fill="#F6F1E2" opacity="0.9"/>
+        <!-- tripod for total station -->
+        <line x1="260" y1="230" x2="220" y2="390" stroke="#E7CD86" stroke-width="4"/>
+        <line x1="260" y1="230" x2="260" y2="392" stroke="#E7CD86" stroke-width="4"/>
+        <line x1="260" y1="230" x2="300" y2="390" stroke="#E7CD86" stroke-width="4"/>
+        <!-- total station body -->
+        <rect x="222" y="150" width="76" height="86" rx="6" fill="#F6F1E2"/>
+        <rect x="234" y="120" width="52" height="34" rx="5" fill="#F6F1E2" opacity="0.9"/>
+        <circle cx="260" cy="137" r="8" fill="#0D3624"/>
+        <rect x="230" y="192" width="60" height="30" rx="3" fill="#0D3624" opacity="0.85"/>
+        <circle cx="260" cy="150" r="70" stroke="#E7CD86" stroke-width="0.8" opacity="0.35" stroke-dasharray="3 5"/>
+      </svg>
+    </div>
+  </div>
+
+  <div class="value-strip">
+    <div class="values">
+      <div class="value reveal">
+        <svg viewBox="0 0 34 34" fill="none"><circle cx="17" cy="17" r="13" stroke-width="1.4"/><circle cx="17" cy="17" r="6.5" stroke-width="1.4"/><circle cx="17" cy="17" r="1.6" stroke-width="1.4"/></svg>
+        <h3>Précision garantie</h3>
+        <p>Mesures fiables au centimètre près</p>
+      </div>
+      <div class="value reveal">
+        <svg viewBox="0 0 34 34" fill="none"><path d="M17 4l11 5v9c0 8-5 13-11 15-6-2-11-7-11-15V9z" stroke-width="1.4"/></svg>
+        <h3>Matériel professionnel</h3>
+        <p>GNSS et stations totales Leica</p>
+      </div>
+      <div class="value reveal">
+        <svg viewBox="0 0 34 34" fill="none"><circle cx="17" cy="12" r="5" stroke-width="1.4"/><path d="M7 29c1-6 5-9 10-9s9 3 10 9" stroke-width="1.4"/></svg>
+        <h3>Expertise &amp; expérience</h3>
+        <p>Une équipe de terrain qualifiée</p>
+      </div>
+      <div class="value reveal">
+        <svg viewBox="0 0 34 34" fill="none"><circle cx="17" cy="17" r="13" stroke-width="1.4"/><path d="M17 9v8l6 4" stroke-width="1.4" stroke-linecap="round"/></svg>
+        <h3>Réactivité &amp; rigueur</h3>
+        <p>Des délais tenus, un suivi sérieux</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="prestations">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Nos prestations</span>
+      <h2>Une expertise topographique complète</h2>
+      <p>Du levé de terrain à l'extrait de plan cadastral, Gora's Topo accompagne particuliers, promoteurs et collectivités à Dakar et dans toutes les régions du Sénégal.</p>
+    </div>
+    <div class="services-grid">
+      <div class="service reveal">
+        <div class="service-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M12 3v18M3 12h18" stroke-width="1.5"/><circle cx="12" cy="12" r="8" stroke-width="1.5"/></svg></div>
+        <h3>Levé topographique</h3>
+        <p>Levés précis pour tous types de terrains et de projets, en planimétrie comme en altimétrie.</p>
+      </div>
+      <div class="service reveal">
+        <div class="service-icon"><svg viewBox="0 0 24 24" fill="none"><rect x="4" y="9" width="16" height="12" stroke-width="1.5"/><path d="M4 9l8-6 8 6" stroke-width="1.5"/><rect x="10" y="14" width="4" height="7" stroke-width="1.5"/></svg></div>
+        <h3>Implantation bâtiment</h3>
+        <p>Implantation précise de vos ouvrages selon les plans et normes en vigueur, avant le démarrage des travaux.</p>
+      </div>
+      <div class="service reveal">
+        <div class="service-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M4 20l6-13 4 7 3-5 3 11z" stroke-width="1.5" stroke-linejoin="round"/></svg></div>
+        <h3>Identification parcelle</h3>
+        <p>Délimitation et matérialisation précise des parcelles foncières, en toute conformité.</p>
+      </div>
+      <div class="service reveal">
+        <div class="service-icon"><svg viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="8" height="8" stroke-width="1.5"/><rect x="13" y="3" width="8" height="8" stroke-width="1.5"/><rect x="3" y="13" width="8" height="8" stroke-width="1.5"/><rect x="13" y="13" width="8" height="8" stroke-width="1.5"/></svg></div>
+        <h3>Lotissement</h3>
+        <p>Études et plans de lotissement conformes à la réglementation, du découpage à la remise des plans.</p>
+      </div>
+      <div class="service reveal">
+        <div class="service-icon"><svg viewBox="0 0 24 24" fill="none"><rect x="5" y="3" width="14" height="18" rx="1" stroke-width="1.5"/><path d="M8 8h8M8 12h8M8 16h5" stroke-width="1.5"/></svg></div>
+        <h3>Extrait de plan</h3>
+        <p>Extraits de plans cadastraux et topographiques précis et fiables, délivrés rapidement.</p>
+      </div>
+      <div class="service reveal" style="background:var(--green-deep);border-color:var(--green-deep);">
+        <div class="service-icon" style="background:var(--gold);"><svg viewBox="0 0 24 24" fill="none" stroke="#0D3624"><path d="M12 5v14M5 12h14" stroke-width="1.5"/></svg></div>
+        <h3 style="color:var(--cream);">Un projet particulier&nbsp;?</h3>
+        <p style="color:rgba(246,241,226,0.75);">Décrivez-nous votre besoin, nous établissons un devis adapté sous 48h.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="equipment" id="equipement">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Équipement professionnel</span>
+      <h2>Des instruments de haute précision</h2>
+      <p>La qualité d'un levé dépend d'abord du matériel. Gora's Topo travaille avec des instruments professionnels de dernière génération.</p>
+    </div>
+    <div class="equip-grid">
+      <div class="equip-list">
+        <div class="equip-item reveal">
+          <span class="num mono">01</span>
+          <div>
+            <h3>Récepteur GNSS</h3>
+            <p>Positionnement par satellite haute précision, idéal pour les levés rapides sur de grandes surfaces et les zones dégagées.</p>
+          </div>
+        </div>
+        <div class="equip-item reveal">
+          <span class="num mono">02</span>
+          <div>
+            <h3>Station totale</h3>
+            <p>Mesures angulaires et distancielles de très haute précision, indispensables pour l'implantation et le bornage.</p>
+          </div>
+        </div>
+        <div class="equip-item reveal">
+          <span class="num mono">03</span>
+          <div>
+            <h3>Traitement &amp; restitution</h3>
+            <p>Calcul, compensation et mise en plan des données collectées, pour des livrables clairs et exploitables.</p>
+          </div>
+        </div>
+      </div>
+      <div class="equip-visual reveal">
+        <svg viewBox="0 0 300 260" fill="none">
+          <line x1="60" y1="230" x2="120" y2="70" stroke="#C9A24B" stroke-width="3"/>
+          <line x1="180" y1="230" x2="120" y2="70" stroke="#C9A24B" stroke-width="3"/>
+          <line x1="120" y1="230" x2="120" y2="70" stroke="#C9A24B" stroke-width="3"/>
+          <rect x="95" y="35" width="50" height="42" rx="5" fill="#F6F1E2"/>
+          <circle cx="120" cy="56" r="9" fill="#0D3624"/>
+          <rect x="102" y="80" width="36" height="18" rx="2" fill="#0D3624" opacity="0.8"/>
+          <circle cx="120" cy="56" r="55" stroke="#E7CD86" stroke-width="0.7" stroke-dasharray="2 6" opacity="0.5"/>
+          <circle cx="120" cy="56" r="80" stroke="#E7CD86" stroke-width="0.7" stroke-dasharray="2 6" opacity="0.3"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="realisations" id="realisations">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Nos réalisations</span>
+      <h2>Nos prestations en images</h2>
+      <p>Un aperçu des types de missions menées par Gora's Topo, du terrain au document final.</p>
+    </div>
+    <div class="real-grid">
+      <div class="real-card reveal">
+        <div class="real-visual"><svg viewBox="0 0 120 120" preserveAspectRatio="none"><rect width="120" height="120" fill="#EDE4CB"/><path d="M15 100 L15 60 L60 30 L105 60 L105 100Z" fill="none" stroke="#175939" stroke-width="2"/><path d="M15 100L105 100" stroke="#C9A24B" stroke-width="2"/></svg></div>
+        <div class="real-label">Levé topographique</div>
+      </div>
+      <div class="real-card reveal">
+        <div class="real-visual"><svg viewBox="0 0 120 120" preserveAspectRatio="none"><rect width="120" height="120" fill="#EDE4CB"/><rect x="25" y="25" width="70" height="70" fill="none" stroke="#175939" stroke-width="2"/><rect x="40" y="40" width="40" height="40" fill="none" stroke="#C9A24B" stroke-width="2"/></svg></div>
+        <div class="real-label">Implantation bâtiment</div>
+      </div>
+      <div class="real-card reveal">
+        <div class="real-visual"><svg viewBox="0 0 120 120" preserveAspectRatio="none"><rect width="120" height="120" fill="#EDE4CB"/><path d="M20 20 L100 40 L80 100 L20 90Z" fill="none" stroke="#9C4A2E" stroke-width="2"/><path d="M20 20L100 40M80 100L20 90" stroke="#175939" stroke-width="1"/></svg></div>
+        <div class="real-label">Identification parcelle</div>
+      </div>
+      <div class="real-card reveal">
+        <div class="real-visual"><svg viewBox="0 0 120 120" preserveAspectRatio="none"><rect width="120" height="120" fill="#EDE4CB"/><rect x="12" y="18" width="26" height="26" fill="none" stroke="#175939" stroke-width="1.6"/><rect x="47" y="18" width="26" height="26" fill="none" stroke="#175939" stroke-width="1.6"/><rect x="82" y="18" width="26" height="26" fill="none" stroke="#175939" stroke-width="1.6"/><rect x="12" y="55" width="26" height="26" fill="none" stroke="#175939" stroke-width="1.6"/><rect x="47" y="55" width="26" height="26" fill="none" stroke="#175939" stroke-width="1.6"/><rect x="82" y="55" width="26" height="26" fill="none" stroke="#175939" stroke-width="1.6"/></svg></div>
+        <div class="real-label">Lotissement</div>
+      </div>
+      <div class="real-card reveal">
+        <div class="real-visual"><svg viewBox="0 0 120 120" preserveAspectRatio="none"><rect width="120" height="120" fill="#EDE4CB"/><path d="M10 30h100M10 50h100M10 70h100M10 90h100" stroke="#175939" stroke-width="1"/><path d="M30 10v100M60 10v100M90 10v100" stroke="#C9A24B" stroke-width="1" opacity="0.6"/></svg></div>
+        <div class="real-label">Extrait de plan</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="wrap">
+    <div class="contact-grid">
+      <div class="reveal">
+        <span class="eyebrow" style="display:flex;align-items:center;gap:10px;">Contact</span>
+        <h2 style="margin-bottom:16px;">Parlons de votre projet</h2>
+        <p style="color:rgba(246,241,226,0.7);margin-bottom:32px;max-width:420px;">Un terrain à borner, un bâtiment à implanter, un extrait de plan à obtenir&nbsp;? Contactez-nous, nous vous répondons rapidement.</p>
+        <div class="contact-cards">
+          <a href="tel:+221782390671" class="contact-card">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M6 3h4l2 5-2.5 1.5a11 11 0 0 0 5 5L16 12l5 2v4a2 2 0 0 1-2 2C10.5 20 4 13.5 4 5a2 2 0 0 1 2-2z" stroke-width="1.4"/></svg>
+            <div><div class="label">Téléphone</div><div class="value mono">78 239 06 71</div></div>
+          </a>
+          <a href="tel:+221763764589" class="contact-card">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M6 3h4l2 5-2.5 1.5a11 11 0 0 0 5 5L16 12l5 2v4a2 2 0 0 1-2 2C10.5 20 4 13.5 4 5a2 2 0 0 1 2-2z" stroke-width="1.4"/></svg>
+            <div><div class="label">Téléphone</div><div class="value mono">76 376 45 89</div></div>
+          </a>
+          <a href="mailto:kebegora29@gmail.com" class="contact-card">
+            <svg viewBox="0 0 24 24" fill="none"><rect x="3" y="5" width="18" height="14" rx="2" stroke-width="1.4"/><path d="M3 7l9 6 9-6" stroke-width="1.4"/></svg>
+            <div><div class="label">E-mail</div><div class="value">kebegora29@gmail.com</div></div>
+          </a>
+          <div class="contact-card" style="cursor:default;">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M12 21s7-6.5 7-12a7 7 0 0 0-14 0c0 5.5 7 12 7 12z" stroke-width="1.4"/><circle cx="12" cy="9" r="2.5" stroke-width="1.4"/></svg>
+            <div><div class="label">Localisation</div><div class="value">Dakar, Sénégal</div></div>
+          </div>
+        </div>
+        <a href="https://wa.me/221782390671" target="_blank" rel="noopener" class="whatsapp-btn">
+          <svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2zm5.8 14.2c-.3.7-1.4 1.3-2 1.4-.5.1-1.2.2-3.7-.8-3.1-1.2-5-4.4-5.2-4.6-.2-.2-1.2-1.6-1.2-3.1s.8-2.2 1-2.5c.3-.3.6-.4.8-.4h.6c.2 0 .5-.1.7.5.3.7.9 2.2 1 2.4.1.2.1.4 0 .6-.1.2-.2.4-.4.6l-.6.6c-.2.2-.4.4-.2.7.2.4.9 1.5 2 2.4 1.4 1.2 2.5 1.6 2.9 1.8.4.2.6.1.8-.1l.9-1c.2-.3.5-.2.8-.1.3.1 2 .9 2.3 1.1.3.2.5.3.6.4.1.2.1 1-.2 1.7z"/></svg>
+          Écrire sur WhatsApp
+        </a>
+      </div>
+
+      <form class="reveal" id="devisForm" action="https://formsubmit.co/ajax/kebegora29@gmail.com" method="POST">
+        <div class="field">
+          <label for="nom">Nom complet</label>
+          <input id="nom" name="Nom" type="text" placeholder="Votre nom" required>
+        </div>
+        <div class="field">
+          <label for="tel">Téléphone</label>
+          <input id="tel" name="Téléphone" type="tel" placeholder="+221 7X XXX XX XX" required>
+        </div>
+        <div class="field">
+          <label for="email">Votre e-mail (facultatif, pour qu'on vous réponde)</label>
+          <input id="email" name="email" type="email" placeholder="votre@email.com">
+        </div>
+        <div class="field">
+          <label for="prestation">Prestation souhaitée</label>
+          <select id="prestation" name="Prestation">
+            <option>Levé topographique</option>
+            <option>Implantation bâtiment</option>
+            <option>Identification parcelle</option>
+            <option>Lotissement</option>
+            <option>Extrait de plan</option>
+            <option>Autre</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="msg">Votre projet</label>
+          <textarea id="msg" name="Message" placeholder="Localisation du terrain, superficie approximative, échéance…"></textarea>
+        </div>
+        <input type="hidden" name="_subject" value="Nouvelle demande de devis — Gora's Topo">
+        <input type="hidden" name="_template" value="table">
+        <input type="hidden" name="_captcha" value="false">
+        <button type="submit" class="submit-btn">Envoyer la demande</button>
+        <p id="formStatus" style="font-size:0.82rem;color:rgba(246,241,226,0.75);margin-top:-6px;"></p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <svg class="skyline" viewBox="0 0 1180 90" preserveAspectRatio="none" fill="none">
+    <path d="M0 90V70l30-6v26z" fill="#123A27"/>
+    <path d="M60 90V50l20-4v44z" fill="#123A27"/>
+    <path d="M110 90V30h6V10h6v20h6v60z" fill="#175939"/>
+    <path d="M150 90V60l16-2v32z" fill="#123A27"/>
+    <path d="M1000 90V45l14-3v48z" fill="#123A27"/>
+    <path d="M1040 90V20c0-4 3-8 8-8s8 4 8 8v70z" fill="#175939"/>
+    <path d="M1090 90V55l18-3v38z" fill="#123A27"/>
+    <path d="M1140 90V65l24-4v29z" fill="#123A27"/>
+  </svg>
+  <div class="footer-top">
+    <div class="footer-tagline">Précision aujourd'hui, <span>confiance demain.</span></div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 GORA'S TOPO — DAKAR, SÉNÉGAL</span>
+    <span>78 239 06 71 · 76 376 45 89 · kebegora29@gmail.com</span>
+  </div>
+</footer>
+
+<script>
+  const burger = document.getElementById('burger');
+  const navLinks = document.querySelector('.nav-links');
+  burger.addEventListener('click', () => {
+    const visible = navLinks.style.display === 'flex';
+    navLinks.style.display = visible ? 'none' : 'flex';
+    Object.assign(navLinks.style, {
+      flexDirection:'column', position:'absolute', top:'64px', right:'20px',
+      background:'var(--cream)', border:'2px solid var(--green-deep)', borderRadius:'4px',
+      padding:'18px 22px', gap:'16px', zIndex:70
+    });
+  });
+
+  // Envoi du formulaire de devis vers Formspree (sans rechargement de page)
+  const devisForm = document.getElementById('devisForm');
+  const formStatus = document.getElementById('formStatus');
+  devisForm.addEventListener('submit', async function(e){
+    e.preventDefault();
+    const btn = devisForm.querySelector('.submit-btn');
+    const originalText = btn.textContent;
+    btn.disabled = true;
+    btn.textContent = 'Envoi en cours…';
+    formStatus.textContent = '';
+    try{
+      const response = await fetch(devisForm.action, {
+        method: 'POST',
+        body: new FormData(devisForm),
+        headers: { 'Accept': 'application/json' }
+      });
+      if(response.ok){
+        btn.textContent = 'Demande envoyée ✓';
+        formStatus.style.color = '#E7CD86';
+        formStatus.textContent = 'Merci ! Votre demande a bien été envoyée, nous vous répondons rapidement.';
+        devisForm.reset();
+        setTimeout(()=>{ btn.textContent = originalText; btn.disabled = false; }, 4000);
+      } else {
+        throw new Error('Envoi refusé');
+      }
+    } catch(err){
+      btn.textContent = originalText;
+      btn.disabled = false;
+      formStatus.style.color = '#E4A06B';
+      formStatus.textContent = "L'envoi a échoué. Merci de nous contacter directement par WhatsApp ou téléphone.";
+    }
+  });
+
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
+  },{threshold:0.15});
+  revealEls.forEach(el=>io.observe(el));
+</script>
+
+</body>
+</html>
